@@ -8,10 +8,10 @@
   let stopLight = document.getElementById('stopLight');
   let slowLight = document.getElementById('slowLight');
   let goLight = document.getElementById('goLight');
-
-  stopBtn.addEventListener('click', () => stopLight.classList.toggle('stop'));
-  slowBtn.addEventListener('click', () => slowLight.classList.toggle('slow'));
-  goBtn.addEventListener('click', () => goLight.classList.toggle('go'));
+  //
+  // stopBtn.addEventListener('click', () => stopLight.classList.toggle('stop'));
+  // slowBtn.addEventListener('click', () => slowLight.classList.toggle('slow'));
+  // goBtn.addEventListener('click', () => goLight.classList.toggle('go'));
 
 
   stopBtn.addEventListener('mouseenter', () => console.log("Entered stop button."));
@@ -22,18 +22,24 @@
   goBtn.addEventListener('mouseleave', () => console.log("Left go button."));
 
 
+  console.log('before', stopLight)
   stopBtn.addEventListener('click', () => {
-    if (stopLight.classList.contains('stop')) {
+    slowLight.classList.remove('slow');
+    goLight.classList.remove('go');
+    if (!stopLight.classList.contains('stop')) {
       stopLight.classList.add('stop');
-      console.log('stop bulb on');
+      console.log('add', stopLight);
     } else {
       stopLight.classList.remove('stop');
-      console.log('stop bulb off');
+      console.log('remove', stopLight);
     };
   })
 
   slowBtn.addEventListener('click', () => {
-    if (slowLight.classList.contains('slow')) {
+    stopLight.classList.remove('stop');
+    goLight.classList.remove('go');
+
+    if (!slowLight.classList.contains('slow')) {
       slowLight.classList.add('slow');
       console.log('slow bulb on');
     } else {
@@ -43,7 +49,10 @@
   })
 
   goBtn.addEventListener('click', () => {
-    if (goLight.classList.contains('go')) {
+    slowLight.classList.remove('slow');
+    stopLight.classList.remove('stop');
+
+    if (!goLight.classList.contains('go')) {
       goLight.classList.add('go');
       console.log('go bulb on');
     } else {
